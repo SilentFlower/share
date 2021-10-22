@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  
+import {getProduct} from "../api";
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  name: 'Home',
+  data(){
+    return{
+      type: 0,
+      id: 1
+    }
+  },
+  created() {
+    this.id = this.$route.query.id
+    this.type = this.$route.query.type
+    this.init()
+  },
+  methods:{
+    init(){
+      console.log(this.type)
+      if (this.type == 1) {
+        console.log("??")
+        this.$router.push({
+          name: 'share1',
+          query:{
+            id: this.id
+          }
+        })
+      }
+    }
   }
 }
 </script>
